@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-wellness-agent"
+version = "1.0.0"
+description = "A Model Context Protocol (MCP) server for wellness data integration"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "StudyBuddy Team", email = "team@studybuddy.dev" }
+]
+keywords = ["mcp", "wellness", "health", "agent", "alexa", "study"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "fastmcp>=2.0.0",
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "pydantic>=2.10.0",
+    "httpx>=0.28.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.25.0",
+    "black>=24.10.0",
+    "ruff>=0.8.0",
+    "mypy>=1.14.0",
+]
+fitbit = [
+    "requests>=2.32.0",
+]
+apple = [
+    "pyobjc-framework-HealthKit>=10.0;platform_system=='Darwin'",
+]
+
+[project.urls]
+Homepage = "https://github.com/yuvanshankarm007/mcp-wellness-agent"
+Documentation = "https://github.com/yuvanshankarm007/mcp-wellness-agent#readme"
+Repository = "https://github.com/yuvanshankarm007/mcp-wellness-agent"
+Issues = "https://github.com/yuvanshankarm007/mcp-wellness-agent/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_wellness_agent"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
